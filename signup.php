@@ -1,25 +1,19 @@
 <?php
 require('app/init.php');
 
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  $name = $_POST['name'];
-  $pass = $_POST['password'];
-  $msg = "Wrong username or password!";
+  $nEmail = $_POST['email'];
+  $nName = $_POST['name'];
+  $nPass = $_POST['password'];
 
-  $statement = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+  $statement = $pdo->prepare("INSERT INTO users(email, username, user_password) VALUES (:email, :username, :user_password)");
 
-  $statement->bindParam(':username', $name);
+  $statement->bindParam(':email', $nEmail);
+  $statement->bindParam(':username', $nName);
+  $statement->bindParam(':user_password', $nPass);
   $statement->execute();
 
-  $user_info = $statement->fetch(PDO::FETCH_ASSOC);
-
-  if($user_info && $pass == $user_info['user_password']){
-    $_SESSION['user_id'] = $user_info['id'];
-    header('Location: app.php');
-  }else{
-    $_SESSION['wronginfo'] = $msg;
-  }
+  header('Location: Login.php');
 }
 ?>
 
@@ -28,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/signup.css">
   <title>To do list</title>
 </head>
 <body>
@@ -41,18 +35,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="login-container">
       <header class="login-form-header">
         <a class="back-home-button" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#272727"><path d="M384-96 0-480l384-384 68 68-316 316 316 316-68 68Z"/></svg></a>
-        <p class="login-form-title">Login</p>
+        <p class="login-form-title">Sign up</p>
         <div class="login-header-filler"></div>
       </header>
       <form class="login-form" method="post">
         <div class="content-input-container">
+          <label class="login-input-label" for="email" >E-mail</label>
+          <input class="login-input" name="email" type="text">
           <label class="login-input-label" for="name" >Username</label> 
           <input class="login-input" name="name" type="text">
           <label class="login-input-label" for="password" >Password</label>
           <input class="login-input" name="password" type="password">
         </div>
-        <div class="done-button-container"><input class="done-button" type="submit" value="DONE"></div>
-        <div class="create-an-account">Don't have an account yet?<a href="signup.php">Create one</a></div>
+        <div class="done-button-container"><input class="done-button" type="submit" value="REGISTER"></div>
+        <div class="login-redirect">Already have an account?<a href="login.php"> Log in</a></div>
       </form>
     </div>
   </main>

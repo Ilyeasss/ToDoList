@@ -2,7 +2,7 @@
 
 require_once 'app/init.php';
 
-$query = $db->prepare("
+$query = $pdo->prepare("
 SELECT id, name, done, important
 FROM items
 WHERE user = :user
@@ -20,7 +20,7 @@ if ($query->rowCount()) {
 
 $t = date("H");
 
-$queryUser = $db->prepare("
+$queryUser = $pdo->prepare("
   SELECT * FROM users
   WHERE id = :id
 ");
@@ -35,6 +35,10 @@ if ($queryUser->rowCount()) {
   $users = [];
 };
 
+
+if(!isset($_SESSION['user_id'])){
+  header('Location: login.php');
+};
 foreach($users as $user):
 ?>
 
@@ -92,12 +96,12 @@ foreach($users as $user):
         </svg>
       </div>
       <div class="avatar-text-container">
-        <p class="welcome"><?= $t<12 ? 'Good Morning,' :'Good Afternoon,';?></p>
+        <p class="welcome"><?= $t<12 ? 'Good Morning' :'Good Afternoon,';?></p>
         <p class="username"><?= $user['username'] ?></p>
       <?php endforeach; ?>
       </div>
     </div>
-    <div class="signout-button-container"><a class="signout-button">Sign Out</a></div>
+    <div class="signout-button-container"><a href="signout.php" class="signout-button">Sign Out</a></div>
   </header>
   <section class="input-form-container">
     <form class="item-add" action="add.php" method="post">

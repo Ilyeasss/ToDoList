@@ -4,7 +4,7 @@ require_once 'app/init.php';
 if(isset($_POST['name'])){
   $name = trim($_POST['name']);
   if(!empty($name)){
-    $query = $db->prepare("
+    $query = $pdo->prepare("
     INSERT INTO items (name, user, done, created, important)
     VALUES (:name, :user, 0, NOW(), 0)
     ");

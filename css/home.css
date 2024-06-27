@@ -1,0 +1,166 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
+/*?   -----header-----    */
+
+header{
+  height: 12vh;
+  width: 100%;
+  background-color: #D3D1D1;
+  display: flex;
+  justify-content: center;
+  gap: 850px;
+  align-items: center;
+}
+
+menu{
+  max-width: 30vw;
+  width: 18vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+.register-button{
+  background-color: #D3D1D1;
+  color: #012646;
+  height: 35px;
+  width: 111px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.25);
+}
+
+.register-button:hover{
+  background-color: #012646;
+  color: #D3D1D1;
+  cursor: pointer;
+}
+
+.register-button:active{
+  margin-top: 3px;
+}
+
+.login-button{
+  background-color: #012646;
+  color: #D3D1D1;
+  height: 35px;
+  width: 93px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.25);
+}
+
+.login-button:hover{
+  cursor: pointer;
+}
+
+.login-button:active{
+  margin-top: 3px;
+}
+
+/*?   -----main-----    */
+
+main{
+  background-color: #bcd3cf;
+  height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  z-index: 1;
+}
+
+.title{
+  color: #0ED3CF;
+  font-size: 120px;
+}
+
+.sub-title{
+  color: #5d6469;
+  font-size: 32px;
+}
+
+.action-button{
+  color: #E5E7EB;
+  background-color: #012646;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 205px;
+  height: 58px;
+  border-radius: 18px;
+  font-size: 20px;
+}
+
+
+/*?   -----footer-----    */
+
+/* best seen at 1500px or less */
+
+html, body { height: 100%; }
+body {
+  background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+  overflow: hidden;
+}
+
+.ocean { 
+  height: 5%;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  background: #015871;
+}
+
+.wave {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+  position: absolute;
+  top: -198px;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+  top: -175px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0,-25px,0);
+  }
+  50% {
+    transform: translate3d(0,5px,0);
+  }
+}

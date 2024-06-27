@@ -5,7 +5,7 @@ if(isset($_GET['as'], $_GET['item'])){
   $as = $_GET['as'];
   $item = $_GET['item'];
   if($as == 'done'){
-    $query = $db->prepare("
+    $query = $pdo->prepare("
     UPDATE items
     SET done = 1
     WHERE id = :item
@@ -17,7 +17,7 @@ if(isset($_GET['as'], $_GET['item'])){
     ]);
   };
   if($as == 'notdone'){
-    $query = $db->prepare("
+    $query = $pdo->prepare("
     UPDATE items
     SET done = 0
     WHERE id = :item

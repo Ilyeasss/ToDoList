@@ -5,7 +5,7 @@ if(isset($_GET['as'], $_GET['item'])){
   $as = $_GET['as'];
   $item = $_GET['item'];
   if($as == 'delete'){
-    $query = $db->prepare("
+    $query = $pdo->prepare("
     DELETE FROM items
     WHERE id = :item
     AND user = :user

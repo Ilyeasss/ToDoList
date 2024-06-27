@@ -2,12 +2,17 @@
 session_start();
 
 
+$host = "localhost";
+$port = 3306;
+$username = "root";
+$password = "";
+$dbname = "todo_list";
 
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname";
 
-$_SESSION['user_id'] = 1;
+$options = [
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+  ];
 
-$db = new PDO('mysql:dbname=todo_list;host:localhost', 'root', '');
-
-if(!isset($_SESSION['user_id'])){
-  die('You must sign in');
-};
+  $pdo = new PDO($dsn, $username, $password, $options);
